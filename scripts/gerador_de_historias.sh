@@ -7,40 +7,24 @@ capturar_entrada() {
     echo "$valor"
 }
 
-# Função para reinstalar o script
-reinstalar_script() {
-    echo "Reinstalando o script..."
+# Função para desinstalar o script
+desinstalar_script() {
+    echo "Desinstalando o script..."
 
-    # Verificar se o diretório do script existe
-    if [ -d "$HOME/scripts" ]; then
-        cd "$HOME/scripts"
+    # Remover o script se existir
+    if [ -f "$HOME/scripts/gerador_de_historias.sh" ]; then
+        rm "$HOME/scripts/gerador_de_historias.sh"
+        echo "Script desinstalado com sucesso."
     else
-        echo "Diretório 'scripts' não encontrado. Criando novo diretório..."
-        mkdir -p "$HOME/scripts"
-        cd "$HOME/scripts"
+        echo "O script não está instalado."
     fi
-
-    # Remover versão existente, se houver
-    rm -f gerador_de_historias.sh
-
-    # Baixar a versão mais recente do GitHub
-    wget https://raw.githubusercontent.com/DragonSCP/criadragonmodshistorias/main/scripts/gerador_de_historias.sh -O gerador_de_historias.sh
-
-    # Tornar o script executável
-    chmod +x gerador_de_historias.sh
-
-    echo "Script reinstalado com sucesso!"
-
-    # Executar o script novamente após a reinstalação
-    echo "Executando o script novamente..."
-    exec "$0"
 }
 
 # Menu principal
 while true; do
     echo "===== Menu Principal ====="
     echo "1. Gerar história"
-    echo "2. Atualizar script"
+    echo "2. Desinstalar script"
     echo "3. Sair"
 
     read -p "Escolha uma opção (1/2/3): " opcao
@@ -101,11 +85,11 @@ while true; do
             echo "Fim da história."
             ;;
         2)
-            # Opção para reinstalar o script
-            reinstalar_script
+            # Opção para desinstalar o script
+            desinstalar_script
             ;;
         3)
-            echo "Saindo..."
+            echo "Saindo do menu..."
             exit 0
             ;;
         *)
