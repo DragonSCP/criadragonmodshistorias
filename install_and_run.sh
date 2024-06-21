@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Remover o repositório clonado anteriormente, se existir
+echo "Removendo o repositório clonado anteriormente, se existir..."
+rm -rf criadragonmodshistorias
+
 # Diretório onde o script será instalado
 INSTALL_DIR="$HOME/scripts"
 
@@ -15,7 +19,7 @@ if [ -f "$INSTALL_DIR/gerador_de_historias.sh" ]; then
     # Remover script existente
     rm -f "$INSTALL_DIR/gerador_de_historias.sh"
 
-    echo "Script desinstalado com sucesso."
+    echo "Script 'gerador_de_historias.sh' desinstalado com sucesso."
 else
     echo "Nenhuma versão anterior do script encontrada. Continuando com a instalação..."
 fi
